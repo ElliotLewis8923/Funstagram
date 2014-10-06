@@ -3,6 +3,10 @@ require 'spec_helper'
 
 describe 'post' do
     context 'no posts submitted' do
+
+    	before(:each) do
+    		login_as create(:elliot)
+    	end
         
         it 'should display a prompt to add a post' do
           visit '/posts'
@@ -32,6 +36,7 @@ describe 'post' do
 
     	before(:each) do
     		@post = create(:post)
+    		login_as create(:elliot)
     	end
 
     		it 'should display posts and their images on the homepage' do
