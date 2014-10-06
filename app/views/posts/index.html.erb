@@ -1,3 +1,5 @@
+<% if Post.all.count == 0 %>
 No posts
+<% end %>
 
 <%= link_to 'Add a post', new_post_path %>
