@@ -31,6 +31,7 @@ gem 'spring',        group: :development
 group :test do 
 	gem 'rspec-rails'
 	gem 'capybara'
+	gem 'shoulda-matchers', require: false
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
