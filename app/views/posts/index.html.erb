@@ -4,8 +4,9 @@ No posts
 
 <% @posts.each do |post| %>
 <article class='post'>
-<%= link_to image_tag(post.image.url(:thumb)), post_path(post) %><br>
+<em><%= link_to image_tag(post.image.url(:thumb)), post_path(post) %></em><br>
 <%= post.caption %>
+<%= link_to 'Leave a comment', new_post_comment_path(post) %>
 </article>
 <% end %>
 
