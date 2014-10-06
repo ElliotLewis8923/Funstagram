@@ -38,7 +38,15 @@ describe 'post' do
     			visit '/posts'
     			expect(page).to have_content 'first post'
     			expect(page).to have_css("img")
-    			#expect(page.has_image? '/test_image.png').to eq true
     		end
+
+    		it 'should display a larger image when clicked' do
+    			visit '/posts'
+    			click_link 'image'
+    			expect(page).to have_css("img")
+    			expect(page).not_to have_content 'Add a post'
+    		end
+
+
     end
 end

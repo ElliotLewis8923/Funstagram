@@ -3,9 +3,10 @@ No posts
 <% end %>
 
 <% @posts.each do |post| %>
-<%= image_tag post.image.url(:thumb) %>
+<%= link_to image_tag(post.image.url(:thumb)), post_path(post) %>
 <%= post.caption %>
+
 <% end %>
 
 
-<%= link_to 'Add a post', new_post_path %>
+<%= link_to 'Add a post', new_post_path, class: 'image' %>
