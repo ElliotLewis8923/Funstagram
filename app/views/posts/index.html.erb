@@ -1,5 +1,11 @@
-<% if Post.all.count == 0 %>
+<% if @posts.count == 0 %>
 No posts
 <% end %>
+
+<% @posts.each do |post| %>
+<%= image_tag post.image.url(:thumb) %>
+<%= post.caption %>
+<% end %>
+
 
 <%= link_to 'Add a post', new_post_path %>
