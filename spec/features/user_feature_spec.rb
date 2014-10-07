@@ -4,12 +4,6 @@ describe 'User' do
 
 	context 'Signed out' do
 
-		it 'should not be able to submit a post' do
-			visit '/posts'
-			click_link 'Add a post'
-			expect(page).to have_content 'You need to sign in or sign up before continuing.'
-		end
-
 		it 'can sign up with a username' do
 			visit '/posts'
 			click_link 'Sign up'
@@ -29,6 +23,21 @@ describe 'User' do
 			fill_in 'Password', :with => 's3cr3tp455w0rd'
 			click_button 'Log in'
 			expect(page).to have_content 'Signed in successfully.'
+		end
+
+		it 'can not create a post' do
+			visit '/posts'
+			expect(page).not_to have_content 'Add a post'
+			visit '/posts/new'
+			expect(current_path).to eq '/users/sign_in'
+		end
+
+		it 'can not leave a comment on a post' do
+			post = create(:post)
+			visit '/posts'
+			expect(page).not_to have_content 'Leave a comment'
+			visit "/posts/#{post.id}/comments/new"
+			expect(current_path).to eq '/users/sign_in'
 		end
 	
 	end
