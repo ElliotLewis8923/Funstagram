@@ -28,4 +28,15 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def edit
+		@post = Post.find(params[:id])
+	end
+
+	def update
+		@post = Post.find(params[:id])
+		@post.update(params[:post].permit(:caption))
+		redirect_to posts_path
+		flash[:notice] = "Your post has been successfully updated"
+	end
+
 end

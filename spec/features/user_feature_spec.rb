@@ -73,6 +73,21 @@ describe 'User' do
 			click_link 'image'
 			expect(page).not_to have_content 'Delete'
 		end
+
+		it "can change its own posts' caption" do
+			@post.user_id = @user.id
+			@post.save
+			visit '/posts'
+			click_link 'image'
+			click_link 'Edit'
+			fill_in 'Caption', :with => 'changed caption'
+			click_button 'Submit'
+			expect(page).to have_css 'img'
+			expect(page).to have_content 'changed caption'
+		end
+
+
+
 	end
 
 end
