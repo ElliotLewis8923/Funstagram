@@ -17,4 +17,15 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
+	def destroy
+		@post = Post.find(params[:id])
+		if @post.user_id == current_user.id
+			@post.destroy
+			redirect_to posts_path
+			flash[:notice] = "Your post was successfully destroyed"
+		else
+			redirect_to posts_path
+		end
+	end
+
 end

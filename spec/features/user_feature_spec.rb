@@ -42,4 +42,31 @@ describe 'User' do
 	
 	end
 
+	context 'Signed in' do
+
+		before(:each) do
+			@user = create(:gilbert)
+			login_as @user
+		end
+
+
+		it 'the homepage should display its username' do
+			visit '/posts'
+			expect(page).to have_content 'Welcome, hacker1337'
+		end
+
+		it 'can delete its own posts' do
+			post = create(:post)
+			post.user_id = @user.id
+			post.save
+			visit '/posts'
+			click_link 'image'
+			click_link 'Delete'
+			expect(current_path).to eq '/posts'
+			expect(page).to have_content "Your post was successfully destroyed"
+		end
+
+
+	end
+
 end
