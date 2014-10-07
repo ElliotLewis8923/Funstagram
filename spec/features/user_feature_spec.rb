@@ -69,6 +69,7 @@ describe 'User' do
 		it "can not delete other users' posts" do
 			@user2 = create(:elliot)
 			@post.user_id = @user2.id
+			@post.save
 			visit '/posts'
 			click_link 'image'
 			expect(page).not_to have_content 'Delete'
@@ -86,6 +87,17 @@ describe 'User' do
 			expect(page).to have_content 'changed caption'
 		end
 
+		it "can not edit other users' posts" do
+			@user2 = create(:elliot)
+			@post.user_id = @user2.id
+			@post.save
+			visit '/posts'
+			click_link 'image'
+			expect(page).not_to have_content 'Edit'
+			visit "/posts/#{@post.id}/edit"
+		end
+
+		
 
 
 	end
