@@ -4,8 +4,11 @@ describe 'User' do
 
 	context 'Signed out' do
 
-		it 'can sign up with a username' do
+		before(:each) do
 			visit '/posts'
+		end
+
+		it 'can sign up with a username' do
 			click_link 'Sign up'
 			fill_in 'Email', :with => 'test@test.com'
 			fill_in 'Password', :with => 's3cr3tp455w0rd'
@@ -16,7 +19,6 @@ describe 'User' do
 		end
 
 		it 'can sign in with a username' do
-			visit '/posts'
 			create(:elliot)
 			click_link 'Sign in'
 			fill_in 'user[login]', :with => 'imsocool123'
@@ -26,7 +28,6 @@ describe 'User' do
 		end
 
 		it 'can not create a post' do
-			visit '/posts'
 			expect(page).not_to have_content 'Add a post'
 			visit '/posts/new'
 			expect(current_path).to eq '/users/sign_in'
@@ -34,7 +35,6 @@ describe 'User' do
 
 		it 'can not leave a comment on a post' do
 			post = create(:post)
-			visit '/posts'
 			expect(page).not_to have_content 'Leave a comment'
 			visit "/posts/#{post.id}/comments/new"
 			expect(current_path).to eq '/users/sign_in'
@@ -51,54 +51,61 @@ describe 'User' do
 		end
 
 
-		it 'the homepage should display its username' do
+		it 'should display its username' do
 			visit '/posts'
 			expect(page).to have_content 'Welcome, hacker1337'
 		end
 
-		it 'can delete its own posts' do
-			@post.user_id = @user.id
-			@post.save
+		it 'should display a link to sign out' do
 			visit '/posts'
-			click_link 'image'
-			click_link 'Delete'
-			expect(current_path).to eq '/posts'
-			expect(page).to have_content "Your post was successfully destroyed"
+			expect(page).to have_link 'Sign out'
 		end
-
-		it "can not delete other users' posts" do
-			@user2 = create(:elliot)
-			@post.user_id = @user2.id
-			@post.save
-			visit '/posts'
-			click_link 'image'
-			expect(page).not_to have_content 'Delete'
-		end
-
-		it "can change its own posts' caption" do
-			@post.user_id = @user.id
-			@post.save
-			visit '/posts'
-			click_link 'image'
-			click_link 'Edit'
-			fill_in 'Caption', :with => 'changed caption'
-			click_button 'Submit'
-			expect(page).to have_css 'img'
-			expect(page).to have_content 'changed caption'
-		end
-
-		it "can not edit other users' posts" do
-			@user2 = create(:elliot)
-			@post.user_id = @user2.id
-			@post.save
-			visit '/posts'
-			click_link 'image'
-			expect(page).not_to have_content 'Edit'
-			visit "/posts/#{@post.id}/edit"
-		end
-
 		
+		context 'permissions' do
 
+			before(:each) do
+				@post.user_id = @user.id
+				@post.save
+				visit '/posts'
+				click_link 'image'
+			end
+
+
+			it 'can delete its own posts' do
+				click_link 'Delete'
+				expect(current_path).to eq '/posts'
+				expect(page).to have_content "Your post was successfully destroyed"
+			end
+
+			it "can edit its own posts" do
+				click_link 'Edit'
+				fill_in 'Caption', :with => 'changed caption'
+				click_button 'Submit'
+				expect(page).to have_css 'img'
+				expect(page).to have_content 'changed caption'
+			end
+		end
+
+		context 'restrictions' do
+
+			before(:each) do
+				@user2 = create(:elliot)
+				@post.user_id = @user2.id
+				@post.save
+				visit '/posts'
+				click_link 'image'
+			end
+
+			it "can not delete other users' posts" do
+				expect(page).not_to have_content 'Delete'
+			end
+
+			it "can not edit other users' posts" do
+				expect(page).not_to have_content 'Edit'
+				visit "/posts/#{@post.id}/edit"
+				expect(current_path).to eq '/posts'
+			end
+		end
 
 	end
 
