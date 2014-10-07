@@ -46,6 +46,7 @@ describe 'User' do
 
 		before(:each) do
 			@user = create(:gilbert)
+			@post = create(:post)
 			login_as @user
 		end
 
@@ -56,9 +57,8 @@ describe 'User' do
 		end
 
 		it 'can delete its own posts' do
-			post = create(:post)
-			post.user_id = @user.id
-			post.save
+			@post.user_id = @user.id
+			@post.save
 			visit '/posts'
 			click_link 'image'
 			click_link 'Delete'
@@ -66,7 +66,13 @@ describe 'User' do
 			expect(page).to have_content "Your post was successfully destroyed"
 		end
 
-
+		it "can not delete other users' posts" do
+			@user2 = create(:elliot)
+			@post.user_id = @user2.id
+			visit '/posts'
+			click_link 'image'
+			expect(page).not_to have_content 'Delete'
+		end
 	end
 
 end
