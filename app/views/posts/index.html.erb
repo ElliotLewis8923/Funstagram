@@ -1,20 +1,18 @@
 <% if @posts.count == 0 %>
 No posts
 <% end %>
-
+<section class='posts'>
 <% @posts.each do |post| %>
-<article class='post'>
-<em><%= link_to image_tag(post.image.url(:thumb)), post_path(post) %></em><br>
-<%= post.caption %>
-<%= post.comments.each do |comment| %>
-<%= comment.text %>
+	<%= link_to image_tag(post.image.url(:thumb)), post_path(post), class: 'image-link' %><br>
+	<em><%= post.caption %></em>
+	<% post.comments.each do |comment| %>
+	<%= comment.text %><br>
+	<% end %>
+	<% if user_signed_in? %>
+	<%= link_to 'Leave a comment', new_post_comment_path(post) %>
+	<% end %>
 <% end %>
+</section>
 <% if user_signed_in? %>
-<%= link_to 'Leave a comment', new_post_comment_path(post) %>
-<% end %>
-</article>
-<% end %>
-
-<% if user_signed_in? %>
-<%= link_to 'Add a post', new_post_path, class: 'image' %>
+<%= link_to 'Add a post', new_post_path, class: 'create-post' %>
 <% end %>

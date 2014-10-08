@@ -23,12 +23,22 @@ describe 'Comment' do
 		end
 
 
-		it 'should display comments along with their associated posts' do
+		it 'should display alongside their associated posts' do
 			create(:comment)
-			visit '/posts'
+			visit '/posts/'
 			expect(page).to have_content 'nice pic'
-
 		end
+
+		it 'should display the username of their creator' do
+			visit '/posts'
+			click_link 'Leave a comment'
+			fill_in 'Text', :with => 'nice pic'
+			click_button 'Submit'
+			logout
+			click_link 'image'
+			expect(page).to have_content 'imsocool123'
+		end
+
 			
 	end
 

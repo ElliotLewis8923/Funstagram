@@ -105,6 +105,8 @@ describe 'User' do
 				visit "/posts/#{@post.id}/edit"
 				expect(current_path).to eq '/posts'
 			end
+
+
 		end
 
 	end

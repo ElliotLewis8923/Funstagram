@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  resources :posts do
+    resources :likes
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
