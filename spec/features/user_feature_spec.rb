@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User' do
 
-	context 'Signed out' do
+	context 'when signed out' do
 
 		before(:each) do
 			visit '/posts'
@@ -42,7 +42,7 @@ describe 'User' do
 	
 	end
 
-	context 'Signed in' do
+	context 'when signed in' do
 
 		before(:each) do
 			@user = create(:gilbert)
@@ -61,7 +61,7 @@ describe 'User' do
 			expect(page).to have_link 'Sign out'
 		end
 		
-		context 'permissions' do
+		context 'have permissions:' do
 
 			before(:each) do
 				@post.user_id = @user.id
@@ -71,13 +71,13 @@ describe 'User' do
 			end
 
 
-			it 'can delete its own posts' do
+			it 'they can delete its own posts' do
 				click_link 'Delete'
 				expect(current_path).to eq '/posts'
 				expect(page).to have_content "Your post was successfully destroyed"
 			end
 
-			it "can edit its own posts" do
+			it "they can edit its own posts" do
 				click_link 'Edit'
 				fill_in 'Caption', :with => 'changed caption'
 				click_button 'Submit'
@@ -86,7 +86,7 @@ describe 'User' do
 			end
 		end
 
-		context 'restrictions' do
+		context 'have restrictions:' do
 
 			before(:each) do
 				@user2 = create(:elliot)
@@ -96,17 +96,17 @@ describe 'User' do
 				visit "/posts/#{@post.id}"
 			end
 
-			it "can not delete other users' posts" do
+			it "they can not delete other users' posts" do
 				expect(page).not_to have_content 'Delete'
 			end
 
-			it "can not edit other users' posts" do
+			it "they can not edit other users' posts" do
 				expect(page).not_to have_content 'Edit'
 				visit "/posts/#{@post.id}/edit"
 				expect(current_path).to eq '/posts'
 			end
 
-			it 'can only like a post once' do
+			it 'they can only like a post once' do
 				click_link 'Like'
 				expect(page).to have_content '1 like'
 				expect(page).to have_content 'Unlike'

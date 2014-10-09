@@ -1,8 +1,8 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe 'post' do
-    context 'no posts submitted' do
+describe 'Posts' do
+    context 'when none have been submitted' do
 
     	before(:each) do
     		login_as create(:elliot)
@@ -32,20 +32,20 @@ describe 'post' do
         end
     end
 
-    context 'posts have been submitted' do
+    context 'when have already been submitted' do
 
     	before(:each) do
     		@post = create(:post)
     		login_as create(:elliot)
     	end
 
-    		it 'should display posts and their images on the homepage' do
+    		it 'should be displayed with their images on the homepage' do
     			visit '/posts'
     			expect(page).to have_content 'first post'
     			expect(page).to have_css("img")
     		end
 
-    		it 'should display a larger image when clicked' do
+    		it 'should be display as a larger image when clicked' do
     			visit '/posts'
     			click_link 'image'
     			expect(page).to have_css("img")

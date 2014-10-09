@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Comment' do
 	
-	context 'Posting a comment' do
+	context 'when posted' do
 		before(:each) do
 			@post = create(:post)
 			login_as create(:elliot)
