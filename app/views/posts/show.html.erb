@@ -4,7 +4,11 @@
 <strong><span class='likes'></span>
 <% if user_signed_in? %>
 		<%= link_to 'Leave a comment', new_post_comment_path(@post) %>
+	<% if @post.likes.find_by(:user_id => current_user.id).nil? %>
 		<%= link_to 'Like', post_likes_path(@post), method: :post %>
+	<% else %>
+		<%= link_to 'Unlike', post_like_path(@post, @post.likes.find_by(:user_id => current_user.id)), method: :delete %>
+	<% end %>
 <% if current_user.id == @post.user_id %>
 	<%= link_to 'Delete', post_path(@post), method: :delete, :confirm => "Are you sure you would like to delete this post?" %>
 	<%= link_to 'Edit', edit_post_path(@post) %>

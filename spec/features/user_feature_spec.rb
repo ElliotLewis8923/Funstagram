@@ -106,6 +106,12 @@ describe 'User' do
 				expect(current_path).to eq '/posts'
 			end
 
+			it 'can only like a post once' do
+				click_link 'Like'
+				expect(page).to have_content '1 like'
+				expect(page).to have_content 'Unlike'
+			end
+
 
 		end
 
