@@ -17,4 +17,12 @@ describe 'Like' do
 		expect(page).to have_content '1 like'
 	end
 
+	it 'can be unliked' do
+		visit "/posts/#{@post.id}"
+		click_link 'Like'
+		visit "/posts/#{@post.id}"
+		click_link 'Unlike'
+		expect(page).to have_content '0 likes'
+	end
+
 end

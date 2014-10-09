@@ -90,10 +90,10 @@ describe 'User' do
 
 			before(:each) do
 				@user2 = create(:elliot)
+				@post = create(:post)
 				@post.user_id = @user2.id
 				@post.save
-				visit '/posts'
-				click_link 'image'
+				visit "/posts/#{@post.id}"
 			end
 
 			it "can not delete other users' posts" do

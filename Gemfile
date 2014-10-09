@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'database_cleaner'
 gem 'devise'
 gem "factory_girl_rails", "~> 4.0"
 gem "paperclip", "~> 4.2"
@@ -31,6 +32,8 @@ gem 'spring',        group: :development
 group :test do 
 	gem 'rspec-rails'
 	gem 'capybara'
+	gem 'poltergeist'
+	gem 'capybara-webkit'
 	gem 'shoulda-matchers', require: false
 end
 # Use ActiveModel has_secure_password
