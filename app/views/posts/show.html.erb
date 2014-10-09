@@ -1,14 +1,15 @@
 <%= image_tag @post.image.url(:medium) %><br>
 <strong><%= @post.caption %></strong>
-<%= @post.likes.count %> like
-<strong><span class='likes'></span>
 <% if user_signed_in? %>
 		<%= link_to 'Leave a comment', new_post_comment_path(@post) %>
+	<section class='like-links'>
+		<span><%= pluralize(@post.likes.count, 'like') %></span>
 	<% if @post.likes.find_by(:user_id => current_user.id).nil? %>
-		<%= link_to 'Like', post_likes_path(@post), method: :post %>
+		<%= link_to 'Like', post_likes_path(@post), method: :post, remote: true, class: 'like-link' %>
 	<% else %>
-		<%= link_to 'Unlike', post_like_path(@post, @post.likes.find_by(:user_id => current_user.id)), method: :delete %>
+		<%= link_to 'Unlike', post_like_path(@post, @post.likes.find_by(:user_id => current_user.id)), method: :delete, remote: true, class: 'unlike-link' %>
 	<% end %>
+	</section>
 <% if current_user.id == @post.user_id %>
 	<%= link_to 'Delete', post_path(@post), method: :delete, :confirm => "Are you sure you would like to delete this post?" %>
 	<%= link_to 'Edit', edit_post_path(@post) %>
