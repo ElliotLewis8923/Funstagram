@@ -15,3 +15,21 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+var options = {
+    "backdrop" : "static"
+}
+
+
+
+
+$(document).ready(function(){
+           $('.image-link').on('click', function(){
+           		$.get(this.href, function(response) {
+           			console.log(response)
+                	$('#imgModal .modal-body').html(response);
+                	$('#imgModal').modal('show')
+  
+        });  
+    });
+});
