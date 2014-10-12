@@ -7,7 +7,7 @@ require 'paperclip'
 require 'paperclip/matchers'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :poltergeist
 
 Warden.test_mode!
 # Add additional requires below this line. Rails is not loaded until this point!

@@ -35,7 +35,6 @@ group :test do
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'poltergeist'
-	gem 'capybara-webkit'
 	gem 'shoulda-matchers', require: false
 end
 # Use ActiveModel has_secure_password
