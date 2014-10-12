@@ -8,7 +8,7 @@ describe 'User' do
 			visit '/posts'
 		end
 
-		it 'can sign up with a username' do
+		it 'can sign up with a username', :js => true do
 			click_link 'Sign up'
 			fill_in 'Email', :with => 'test@test.com'
 			fill_in 'Password', :with => 's3cr3tp455w0rd'
@@ -18,7 +18,7 @@ describe 'User' do
 			expect(User.find_by(username: 'hackerneodude123')).not_to eq nil
 		end
 
-		it 'can sign in with a username' do
+		it 'can sign in with a username', :js => true do
 			create(:elliot)
 			click_link 'Sign in'
 			fill_in 'user[login]', :with => 'imsocool123'
@@ -27,13 +27,13 @@ describe 'User' do
 			expect(page).to have_content 'Signed in successfully.'
 		end
 
-		it 'can not create a post' do
+		it 'can not create a post', :js => true do
 			expect(page).not_to have_content 'Add a post'
 			visit '/posts/new'
 			expect(current_path).to eq '/users/sign_in'
 		end
 
-		it 'can not leave a comment on a post' do
+		it 'can not leave a comment on a post', :js => true do
 			post = create(:post)
 			expect(page).not_to have_content 'Leave a comment'
 			visit "/posts/#{post.id}/comments/new"
@@ -71,13 +71,13 @@ describe 'User' do
 			end
 
 
-			it 'they can delete its own posts' do
+			it 'they can delete its own posts', :js => true do
 				click_link 'Delete'
 				expect(current_path).to eq '/posts'
 				expect(page).to have_content "Your post was successfully destroyed"
 			end
 
-			it "they can edit its own posts" do
+			it "they can edit its own posts", :js => true do
 				click_link 'Edit'
 				fill_in 'Caption', :with => 'changed caption'
 				click_button 'Submit'
@@ -96,17 +96,17 @@ describe 'User' do
 				visit "/posts/#{@post.id}"
 			end
 
-			it "they can not delete other users' posts" do
+			it "they can not delete other users' posts", :js => true do
 				expect(page).not_to have_content 'Delete'
 			end
 
-			it "they can not edit other users' posts" do
+			it "they can not edit other users' posts", :js => true do
 				expect(page).not_to have_content 'Edit'
 				visit "/posts/#{@post.id}/edit"
 				expect(current_path).to eq '/posts'
 			end
 
-			it 'they can only like a post once' do
+			it 'they can only like a post once', :js => true do
 				click_link 'Like'
 				expect(page).to have_content '1 like'
 				expect(page).to have_content 'Unlike'
