@@ -4,10 +4,8 @@
 		<%= link_to 'Leave a comment', new_post_comment_path(@post) %>
 	<section class='like-links'>
 		<span><%= pluralize(@post.likes.count, 'like') %></span>
-	<% if @post.likes.find_by(:user_id => current_user.id).nil? %>
-		<%= link_to 'Like', post_likes_path(@post), method: :post, remote: true, class: 'like-link' %>
-	<% else %>
-		<%= link_to 'Unlike', post_like_path(@post, @post.likes.find_by(:user_id => current_user.id)), method: :delete, remote: true, class: 'unlike-link' %>
+	<% if current_user %>
+		<a class="like-link" data-method="post" data-remote="true" href="/posts/1/likes" rel="nofollow"><span class="link-name">Like</span></a>
 	<% end %>
 	</section>
 <% if current_user.id == @post.user_id %>
