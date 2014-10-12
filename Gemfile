@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'database_cleaner'
 gem 'devise'
 gem "factory_girl_rails", "~> 4.0"
