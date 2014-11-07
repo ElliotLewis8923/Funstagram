@@ -25,7 +25,7 @@ describe 'Posts' do
         	visit '/posts'
         	click_link 'Add a post'
         	fill_in 'Caption', :with => 'first post'
-        	attach_file('Image', './app/assets/images/test_image.png')
+        	attach_file('Image', './app/assets/images/test image.png')
         	click_button 'Submit'
         	expect(page).to have_link 'Add a post'
         	expect(page).not_to have_content 'No posts'

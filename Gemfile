@@ -34,6 +34,7 @@ gem 'spring',        group: :development
 group :test do 
 	gem 'rspec-rails'
 	gem 'capybara'
+	gem 'phantomjs', require: 'phantomjs/poltergeist'
 	gem 'poltergeist'
 	gem 'shoulda-matchers', require: false
 end

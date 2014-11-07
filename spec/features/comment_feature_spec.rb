@@ -10,12 +10,14 @@ describe 'Comment' do
 
 		it 'should display a form to create a post' do
 			visit '/posts'
+			click_link 'Testimage'
 			click_link 'Leave a comment'
 			expect(page.has_field? 'Text').to eq true
 		end
 
-		it 'should submit a comment' do
+		it 'should submit a comment', :js => true do
 			visit '/posts'
+			click_link 'Testimage'
 			click_link 'Leave a comment'
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
@@ -23,14 +25,22 @@ describe 'Comment' do
 		end
 
 
-		it 'should display alongside their associated posts' do
-			create(:comment)
-			visit '/posts/'
-			expect(page).to have_content 'nice pic'
+		it 'should display alongside their associated posts', :js => true do
+			visit '/posts'
+			click_link 'Testimage'
+			click_link 'Leave a comment'
+			sleep(10)
+			fill_in 'Text', :with => 'nice pic'
+			click_button 'Submit'
+			find('ul li:first-child').click
+			within('#imgModal') do 
+				expect(page).to have_content('nice pic')
+			end
 		end
 
-		it 'should display the username of their creator' do
+		it 'should display the username of their creator', :js => true do
 			visit '/posts'
+			click_link 'Testimage'
 			click_link 'Leave a comment'
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'

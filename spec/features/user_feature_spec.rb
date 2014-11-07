@@ -8,7 +8,7 @@ describe 'User' do
 			visit '/posts'
 		end
 
-		it 'can sign up with a username',  do
+		it 'can sign up with a username'  do
 			click_link 'Sign up'
 			fill_in 'Email', :with => 'test@test.com'
 			fill_in 'Password', :with => 's3cr3tp455w0rd'

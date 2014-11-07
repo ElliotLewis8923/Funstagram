@@ -8,6 +8,7 @@ require 'paperclip/matchers'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
+Capybara.default_wait_time = 5
 
 Warden.test_mode!
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -32,6 +33,21 @@ Warden.test_mode!
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+
+  config.use_transactional_fixtures = false
+
+  config.before :each do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
