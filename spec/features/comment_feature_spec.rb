@@ -19,17 +19,16 @@ describe 'Comment' do
 			visit '/posts'
 			click_link 'Testimage'
 			click_link 'Leave a comment'
+			sleep 15
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
 			expect(current_path).to eq '/posts'
 		end
 
-
 		it 'should display alongside their associated posts', :js => true do
 			visit '/posts'
 			click_link 'Testimage'
 			click_link 'Leave a comment'
-			sleep(10)
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
 			find('ul li:first-child').click
@@ -42,6 +41,7 @@ describe 'Comment' do
 			visit '/posts'
 			click_link 'Testimage'
 			click_link 'Leave a comment'
+			sleep 10
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
 			logout

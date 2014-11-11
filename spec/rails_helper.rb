@@ -7,10 +7,12 @@ require 'paperclip'
 require 'paperclip/matchers'
 require 'shoulda/matchers'
 require 'capybara/poltergeist'
+
 Capybara.javascript_driver = :poltergeist
-Capybara.default_wait_time = 5
+Capybara.default_wait_time = 10
 
 Warden.test_mode!
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -30,20 +32,21 @@ Warden.test_mode!
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
 
-  config.before :each do
-    if Capybara.current_driver == :rack_test
-      DatabaseCleaner.strategy = :transaction
-    else
-      DatabaseCleaner.strategy = :truncation
-    end
-    DatabaseCleaner.start
-  end
+  # config.before :each do
+  #   if Capybara.current_driver == :rack_test
+  #     DatabaseCleaner.strategy = :transaction
+  #   else
+  #     DatabaseCleaner.strategy = :truncation
+  #   end
+  #   DatabaseCleaner.start
+  # end
 
   config.after do
     DatabaseCleaner.clean

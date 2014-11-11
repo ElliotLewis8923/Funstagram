@@ -91,25 +91,28 @@ describe 'User' do
 		context 'have restrictions:' do
 
 			before(:each) do
-				@user2 = create(:elliot)
-				@post = create(:post)
+				@user2 = FactoryGirl.create(:elliot)
+				@post = FactoryGirl.create(:post)
 				@post.user_id = @user2.id
 				@post.save
-				visit "/posts/#{@post.id}"
+				visit '/posts'
+				find('ul li:first-child').click
 			end
 
-			it "they can not delete other users' posts" do
+			it "they can not delete other users' posts", :js => true do
 				expect(page).not_to have_content 'Delete'
 			end
 
-			it "they can not edit other users' posts" do
+			it "they can not edit other users' posts", :js => true do
 				expect(page).not_to have_content 'Edit'
 				visit "/posts/#{@post.id}/edit"
 				expect(current_path).to eq '/posts'
 			end
 
-			it 'they can only like a post once' do
+			it 'they can only like a post once', :js => true do
+				sleep 10
 				click_link 'Like'
+				sleep 15
 				expect(page).to have_content '1 like'
 				expect(page).to have_content 'Unlike'
 			end

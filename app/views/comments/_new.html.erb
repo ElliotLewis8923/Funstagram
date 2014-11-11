@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+	<%= form_for([@post, @comment], remote: true) do |f| %>
+	<%= f.label :text %>
+	<%= f.text_area :text %>
+	<%= f.submit 'Submit' %>
+	<% end %>
+<% end %>

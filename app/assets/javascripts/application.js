@@ -20,25 +20,37 @@ var options = {
     "backdrop" : "static"
 }
 
-
-
-
 $(document).ready(function(){
-           $('.image-link').on('click', function(){
-           		$.get(this.href, function(response) {
-                	$('#imgModal .modal-body').html(response);
-                	$('#imgModal').modal('show')
-                	$('.like-link').on('click', function(event){
-						var likeCount = $(this).siblings('span');
-						var likeLink = $(this).children('span');
-						$.post(this.href, function(response){
-							console.log(likeLink);
-							likeCount.text(response.updatedlikesCount);
-							console.log(response.link)
-							likeLink.text(response.link);
-						});	
-					});
-  
-        });  
+	$('.image-link').on('click', function() {
+		$.get(this.href, function(response) {
+			$('#imgModal .modal-body').html(response);
+			$('#imgModal').modal('show');
+		});  
     });
+
+	$('.like-link').on('click', function() {
+		var likeCount = $(this).siblings('span');
+		var likeLink = $(this).children('span');
+		$.post(this.href, function(response){
+			likeCount.text(response.updatedlikesCount);
+			likeLink.text(response.link);
+		});	
+	});
+
+	// $('#imgModal form a').on('click', function() {
+	// 	$('#imgModal form').submit();
+	// 	$('#imgModal form')
+	// 	$.post(this.href, function(response) {
+	// 	})
+	// })
+
+	$("#imgModal form").on("ajax:success", function(e, data, status, xhr) {
+	    $("#imgModal ul").append("<li><div id='comment-text'>" + data.commentText + "</div><div id='comment-user'>" + data.commentUser + "</div></li>")
+	});
+
+	  // .on "ajax:error", (e, xhr, status, error) ->
+	  //   $("#new_article").append "<p>ERROR</p>"
+
+
+
 });
