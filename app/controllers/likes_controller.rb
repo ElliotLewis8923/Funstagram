@@ -17,16 +17,4 @@ class LikesController < ApplicationController
 		end
 	end
 
-	# def destroy
-	# 	@post = Post.find(params[:post_id])
-	# 	@like = Like.find(params[:id])
-	# 	@like.destroy
-	# 	render json: { updatedlikesCount: pluralize(@post.likes.count, 'like'), like: 
-	# 		"<a class='like-link' data-method='post' data-remote='true' href='/posts/" + @post.id.to_s + "/likes' rel='nofollow'>Like</a>" }
-	# end
-
-	#<%= link_to 'Unlike', post_like_path(@post, @post.likes.find_by(:user_id => current_user.id)), method: :delete, remote: true, class: "unlike-link" %>
-
-
-
 end

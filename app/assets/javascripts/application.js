@@ -37,20 +37,10 @@ $(document).ready(function(){
 		});	
 	});
 
-	// $('#imgModal form a').on('click', function() {
-	// 	$('#imgModal form').submit();
-	// 	$('#imgModal form')
-	// 	$.post(this.href, function(response) {
-	// 	})
-	// })
-
 	$("#imgModal form").on("ajax:success", function(e, data, status, xhr) {
-	    $("#imgModal ul").append("<li><div id='comment-text'>" + data.commentText + "</div><div id='comment-user'>" + data.commentUser + "</div></li>")
+	    $("#imgModal ul").append("<li><div id='comment-text'>" + data.commentText + "</div><div id='comment-user'>" + data.commentUser + "</div></li>");
+	    var commentBox = $("#comments-list");
+	    commentBox.scrollTop(commentBox.prop("scrollHeight"));
 	});
-
-	  // .on "ajax:error", (e, xhr, status, error) ->
-	  //   $("#new_article").append "<p>ERROR</p>"
-
-
 
 });
