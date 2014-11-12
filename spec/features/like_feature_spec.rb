@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'Likes' do
 
 	before(:each) do
-		@user = FactoryGirl.create(:elliot)
-		@post = FactoryGirl.create(:post)
-		@comment = FactoryGirl.create(:comment)
+		@user = create(:elliot)
+		@post = create(:post)
+		@comment = create(:comment)
 		@comment.user = @user
 		@post.user = @user
 		login_as @user

@@ -15,32 +15,4 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-
-var options = {
-    "backdrop" : "static"
-}
-
-$(document).ready(function(){
-	$('.image-link').on('click', function() {
-		$.get(this.href, function(response) {
-			$('#imgModal .modal-body').html(response);
-			$('#imgModal').modal('show');
-		});  
-    });
-
-	$('.like-link').on('click', function() {
-		var likeCount = $(this).siblings('span');
-		var likeLink = $(this).children('span');
-		$.post(this.href, function(response){
-			likeCount.text(response.updatedlikesCount);
-			likeLink.text(response.link);
-		});	
-	});
-
-	$("#imgModal form").on("ajax:success", function(e, data, status, xhr) {
-	    $("#imgModal ul").append("<li><div id='comment-text'>" + data.commentText + "</div><div id='comment-user'>" + data.commentUser + "</div></li>");
-	    var commentBox = $("#comments-list");
-	    commentBox.scrollTop(commentBox.prop("scrollHeight"));
-	});
-
-});
+//= require jquery.turbolinks
