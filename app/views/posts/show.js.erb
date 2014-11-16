@@ -7,11 +7,16 @@ var title       =   '.modal-title',
 
 //i set the title through a helper function
 $(title).html('');
+$(modal).css('visibility', 'visible');
 //hides the modal and shows the ajax content
 $(loader).fadeToggle('fast', function() {
   $(loader).fadeOut('slow');
   $(content).html('<%= j render("show") %>');
   $(modal).modal();
+});
+
+$(modal).on('hidden.bs.modal', function() {
+  $(this).css('visibility', 'hidden');
 });
 //brings the loader back up + gets rid of the content when linking to another controller method etc
 // $(content).on('click', dataRemote, function() {

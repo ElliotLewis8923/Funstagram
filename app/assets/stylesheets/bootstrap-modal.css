@@ -47,7 +47,8 @@
 
 #ajax-modal {
 	display: block !important;
-	margin:auto;
+	margin: auto;
+	visibility: hidden;
 }
 
 .modal.fade {
