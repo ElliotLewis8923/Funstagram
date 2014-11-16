@@ -1,11 +1,15 @@
 <section id='modal-main'>
 	<%= image_tag @post.image.url(:medium) %><br>
 	<strong><%= @post.caption %></strong>
-	<section class='like-links'>
+	<section id='like-links'>
 		<span><%= pluralize(@post.likes.count, 'like') %></span>
-		<% if current_user %>
-			<a class="like-link" data-method="post" data-remote="true" href="/posts/1/likes" rel="nofollow"><span class="link-name">Like</span></a>
+			<div id="link-name">
+		<% if @post.likes.find_by(:user_id => current_user.id).nil? %>
+			<%= link_to 'Like', post_likes_path(@post), class: 'like-link', method: :post, :remote => true %>
+		<% else %>
+			<%= link_to 'Unlike', post_likes_path(@post), class: 'like-link', method: :post, :remote => true %>
 		<% end %>
+			</div>
 	</section>
 	<section id='user-options'>
 		<% if current_user.id == @post.user_id %>
@@ -31,6 +35,3 @@
 	</section>
 <%= render 'comments/new' %>
 </section>
-
-<%= csrf_meta_tags %>
-

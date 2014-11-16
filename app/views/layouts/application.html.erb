@@ -1,6 +1,9 @@
 <html>
 <head>
-  <title>Shytstagram</title>
+	<%= stylesheet_link_tag    'application', media: 'all' %>
+	<%= csrf_meta_tags %>
+	<%= javascript_include_tag 'application' %>
+  	<title>Shytstagram</title>
 </head>
 <body>
 	<div id='main-container' class='container-fluid'>
@@ -22,8 +25,6 @@
 			<%= yield %>
 		</div>
 	</div>
+	<%= render 'layouts/modal' %>
 </body>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<%= csrf_meta_tags %>
 </html>

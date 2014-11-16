@@ -17,9 +17,12 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+		@liked = @post.likes.find_by(:user_id => current_user.id).nil?
 		@comment = Comment.new
+		sleep 1
 		respond_to do |format|
-          format.html { render :show, :layout => false }
+          format.html { redirect_to root_path }
+          format.js { render :template => 'posts/show.js.erb' }
       end
 	end
 
@@ -47,7 +50,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.update(params[:post].permit(:caption))
 		redirect_to posts_path
-		flash[:notice] = "Your post has been successfully updated"
+		flash[:notice] = "Your post was successfully updated"
 	end
 
 end

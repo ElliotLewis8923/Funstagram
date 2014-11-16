@@ -4,22 +4,10 @@
 <ul class="row">
 	<% @posts.each do |post| %>
 		<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-			<%= link_to image_tag(post.image.url(:thumb)), post_path(post), class: 'image-link', :remote => true, "data-toggle" => "modal","data-target" => "#imgModal"%><br>
+			<%= link_to image_tag(post.image.url(:thumb)), post_path(post), class: 'image-link', remote: true, data: { toggle: "modal", target: "#ajax-modal" } %>
 		</li>
 	<% end %>
 </ul>
 <% if user_signed_in? %>
 	<%= link_to 'Add a post', new_post_path, class: 'create-post' %>
 <% end %>
-<div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="imgModal" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-            </div>
-				<div class="modal-body">
-				</div>
-			<div class="modal-footer">
-			</div>
-		</div>
-	</div>
-</div>

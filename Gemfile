@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'json'
 gem 'jquery-turbolinks'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
