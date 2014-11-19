@@ -11,6 +11,7 @@ describe 'Comment' do
 		end
 
 		it 'should display a form to create a post', :js => true do
+			visit '/posts'
 			find('.image-link').click
   			expect(page).to have_selector 'textarea'
 		end

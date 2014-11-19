@@ -12,6 +12,7 @@ factory :post do
 factory :comment do
 		text 'nice pic'
 		post
+		user_id 1
 	end
 
 factory :user do

@@ -35,7 +35,6 @@ describe 'User' do
 
 		it 'can not leave a comment on a post' do
 			post = create(:post)
-			find('Testimage').trigger('click')
 			expect(page).not_to have_content 'Leave a comment'
 			expect(current_path).to eq '/users/sign_in'
 		end
@@ -69,17 +68,17 @@ describe 'User' do
 				@post.user_id = @user.id
 				@post.save
 				visit '/posts'
-				find('Testimage').trigger('click')
+				find('.image-link').click
 			end
 
 
-			it 'they can delete its own posts' do
+			it 'they can delete its own posts', :js => true do
 				click_link 'Delete'
 				expect(current_path).to eq '/posts'
 				expect(page).to have_content "Your post was successfully destroyed"
 			end
 
-			it "they can edit its own posts" do
+			it "they can edit its own posts", :js => true do
 				click_link 'Edit'
 				fill_in 'Caption', :with => 'changed caption'
 				click_button 'Submit'
@@ -96,7 +95,7 @@ describe 'User' do
 				@post.user_id = @user2.id
 				@post.save
 				visit '/posts'
-				find('Testimage').trigger('click')
+				find('.image-link').click
 			end
 
 			it "they can not delete other users' posts", :js => true do
@@ -110,9 +109,7 @@ describe 'User' do
 			end
 
 			it 'they can only like a post once', :js => true do
-				sleep 10
 				click_link 'Like'
-				sleep 15
 				expect(page).to have_content '1 like'
 				expect(page).to have_content 'Unlike'
 			end
