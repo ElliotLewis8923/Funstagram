@@ -6,7 +6,6 @@ describe 'Comment' do
 		before(:each) do
 			@post = create(:post)
 			@user = create(:elliot)
-			@post.user_id = @user.id
 			login_as @user
 			visit '/posts'
 		end
