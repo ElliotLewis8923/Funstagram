@@ -6,6 +6,7 @@ FactoryGirl.define do
 factory :post do
     caption 'first post'
     image  { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'testimage.png'), 'image/png') }
+    user_id 1
   end
 
 factory :comment do

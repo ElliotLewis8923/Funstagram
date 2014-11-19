@@ -35,8 +35,8 @@ describe 'User' do
 
 		it 'can not leave a comment on a post' do
 			post = create(:post)
+			find('Testimage').trigger('click')
 			expect(page).not_to have_content 'Leave a comment'
-			visit "/posts/#{post.id}/comments/new"
 			expect(current_path).to eq '/users/sign_in'
 		end
 	
@@ -69,7 +69,7 @@ describe 'User' do
 				@post.user_id = @user.id
 				@post.save
 				visit '/posts'
-				click_link 'image'
+				find('Testimage').trigger('click')
 			end
 
 
@@ -91,12 +91,12 @@ describe 'User' do
 		context 'have restrictions:' do
 
 			before(:each) do
-				@user2 = FactoryGirl.create(:elliot)
-				@post = FactoryGirl.create(:post)
+				@user2 = create(:elliot)
+				@post = create(:post)
 				@post.user_id = @user2.id
 				@post.save
 				visit '/posts'
-				find('ul li:first-child').click
+				find('Testimage').trigger('click')
 			end
 
 			it "they can not delete other users' posts", :js => true do

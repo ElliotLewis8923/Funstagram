@@ -33,6 +33,7 @@ GEM
     bcrypt (3.1.7)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap_form (2.2.0)
     builder (3.2.2)
     capybara (2.4.3)
       mime-types (>= 1.16)
@@ -81,6 +82,8 @@ GEM
     json (1.8.1)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
+    masonry-rails (0.2.1)
+      rails
     mime-types (2.3)
     mini_portile (0.6.0)
     minitest (5.4.2)
@@ -180,6 +183,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass (~> 3.2.0)
+  bootstrap_form
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
@@ -189,6 +193,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   json
+  masonry-rails
   paperclip (~> 4.2)
   pg
   phantomjs

@@ -11,13 +11,20 @@
 	overflow: hidden;
 }
 
+.modal-body-content {
+	display: inline-flex;
+	position: fixed;
+	height: 0 auto;
+	width: 0 auto;
+}	
+
 
 /* add a scroll bar to stop page from jerking around */
 .modal-open.page-overflow .page-container,
 .modal-open.page-overflow .page-container .navbar-fixed-top,
 .modal-open.page-overflow .page-container .navbar-fixed-bottom,
 .modal-open.page-overflow .modal-scrollable {
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 @media (max-width: 979px) {
@@ -34,7 +41,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	overflow: auto;
+	overflow: hidden;
 }
 
 .modal {
@@ -42,13 +49,30 @@
 	position: absolute;
 	margin-top: 0;
 	top: 50%;
-	overflow: visible; /* allow content to popup out (i.e tooltips) */
+	overflow: auto; /* allow content to popup out (i.e tooltips) */
+	height: 502px !important;
+	width: 700px !important;
 }
 
 #ajax-modal {
 	display: block !important;
 	margin: auto;
+	height: auto;
+	width: auto;
 	visibility: hidden;
+	padding: 0px;
+}
+
+#modal-main {
+	display: inline;
+	height: auto;
+	width: auto;
+}
+
+#modal-comments {
+	display: inline;
+	top: 0px;
+	right: 0px;
 }
 
 .modal.fade {
@@ -65,7 +89,10 @@
 
 .modal-body {
 	max-height: none;
-	overflow: visible;
+	width: 0 auto;
+	height: 0 auto;
+	overflow: hidden;
+	padding: 0px !important;
 }
 
 .modal.modal-absolute {
@@ -92,7 +119,7 @@
 .modal-backdrop.fade.in{
 	opacity: 0.7;
 	filter: alpha(opacity=70);
-	background: #fff;
+	background: black;
 }
 
 .modal.container {
@@ -161,6 +188,7 @@
 	.modal-footer,
 	.modal-overflow .modal-footer {
 		position: static;
+		height: 100px;
 	}
 }
 

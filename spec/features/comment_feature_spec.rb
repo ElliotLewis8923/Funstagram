@@ -6,40 +6,35 @@ describe 'Comment' do
 		before(:each) do
 			@post = create(:post)
 			@user = create(:elliot)
+			@post.user_id = @user.id
 			login_as @user
-			@post.user = @user
+			visit '/posts'
 		end
 
-		it 'should display a form to create a post' do
-			visit '/posts'
-			click_link 'Testimage'
-			expect(page.has_field? 'Text').to eq true
+		it 'should display a form to create a post', :js => true do
+			find('.image-link').click
+  			expect(page).to have_selector 'textarea'
 		end
 
 		it 'should submit a comment', :js => true do
-			visit '/posts'
-			click_link 'Testimage'
+			find('.image-link').click
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
-			expect(current_path).to eq '/posts'
+			expect(page).to have_content 'nice pic'
 		end
 
 		it 'should display alongside their associated posts', :js => true do
-			visit '/posts'
-			click_link 'Testimage'
+			find('.image-link').click
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
-			expect(page).to have_content('nice pic')
+			expect(page).to have_content 'nice pic'
 		end
 
 		it 'should display the username of their creator', :js => true do
-			visit '/posts'
-			click_link 'Testimage'
+			find('.image-link').click
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
-			logout
-			click_link 'Testimage'
-			expect(page).to have_content 'imsocool123'
+			expect(page).to have_content 'nice picimsocool123'
 		end
 
 			

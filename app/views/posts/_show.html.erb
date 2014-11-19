@@ -1,15 +1,20 @@
 <section id='modal-main'>
-	<%= image_tag @post.image.url(:medium) %><br>
-	<strong><%= @post.caption %></strong>
-	<section id='like-links'>
-		<span><%= pluralize(@post.likes.count, 'like') %></span>
+	<div id='img-wrapper'>
+		<%= image_tag @post.image.url(:medium) %>
+	</div>
+	<div id='img-info'>
+		<strong id='username'><%= @user.username %></strong>
+		<strong id='caption'><%= @post.caption %></strong>
+		<section id='like-links'>
+			<span><%= pluralize(@post.likes.count, 'like') %></span>
 			<div id="link-name">
-		<% if @post.likes.find_by(:user_id => current_user.id).nil? %>
-			<%= link_to 'Like', post_likes_path(@post), class: 'like-link', method: :post, :remote => true %>
-		<% else %>
-			<%= link_to 'Unlike', post_likes_path(@post), class: 'like-link', method: :post, :remote => true %>
-		<% end %>
+			<% if @post.likes.find_by(:user_id => current_user.id).nil? %>
+				<%= link_to 'Like', post_likes_path(@post), class: 'like-link', method: :post, :remote => true %>
+			<% else %>
+				<%= link_to 'Unlike', post_likes_path(@post), class: 'like-link', method: :post, :remote => true %>
+			<% end %>
 			</div>
+	</div>
 	</section>
 	<section id='user-options'>
 		<% if current_user.id == @post.user_id %>
@@ -20,12 +25,10 @@
 </section>
 <section id='modal-comments'>
 	<section id='comments-list'>
-		<ul>
+		<ul class='lis'>
 			<% @post.comments.each do |comment| %>
-			<li>
-				<div id='comment-text'>
+			<li class='list-group-item'>
 					<%= comment.text %>
-				</div>
 				<div id='comment-user'>
 					<%= comment.username %>
 				</div>

@@ -1,7 +1,6 @@
 <% if user_signed_in? %>
-	<%= form_for([@post, @comment], remote: true, class: 'modalForm') do |f| %>
-	<%= f.label :text %>
-	<%= f.text_area :text %>
+	<%= bootstrap_form_for([@post, @comment], remote: true, class: '.form-control, modalForm') do |f| %>
+	<%= f.text_area :text, :placeholder => "Leave a comment" %>
 	<%= f.submit 'Submit' %>
 	<% end %>
 <% end %>

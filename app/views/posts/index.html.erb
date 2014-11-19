@@ -1,13 +1,13 @@
 <% if @posts.count == 0 %>
 	No posts
 <% end %>
-<ul class="row">
-	<% @posts.each do |post| %>
-		<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-			<%= link_to image_tag(post.image.url(:thumb)), post_path(post), class: 'image-link', remote: true, data: { toggle: "modal", target: "#ajax-modal" } %>
-		</li>
-	<% end %>
-</ul>
+<div id="masonry">
+		<% @posts.each do |post| %>
+		<div class='item thumbnail'>
+				<%= link_to image_tag(post.image.url(:thumb)), post_path(post), class: 'image-link', remote: true, data: { toggle: "modal", target: "#ajax-modal" } %>
+		</div>
+		<% end %>
+</div>
 <% if user_signed_in? %>
 	<%= link_to 'Add a post', new_post_path, class: 'create-post' %>
 <% end %>

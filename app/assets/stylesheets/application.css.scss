@@ -16,32 +16,111 @@
  *
  *= require_tree .
  *= require_self
+ *= require rails_bootstrap_forms
+ *= require 'masonry/basic'
+ *= require 'masonry/centered'
+ *= require 'masonry/fluid'
+ *= require 'masonry/gutters'
+ *= require 'masonry/infinitescroll'
+ *= require 'masonry/right-to-left'
+ *= require 'masonry/transitions'
  */
 
 
 .header a {
-	
 	text-decoration: none;
 }
 
-ul, li {
-    
-    list-style-type: none;
-    padding: 0px;
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+#comments-list li {
+	word-wrap: break-word;
 }
 
 #comments-list {
-	position: relative;
-	width: 300px;
-    height: 100px;
-    overflow: scroll;
+	overflow-x: auto;
+	overflow-y: scroll;
+	height: 334px;
+	width: 200px;
 }
 
-#imgModal form {
+#like-links, #link-name {
+	display: inline;
+}
+
+#caption {
 	display: block;
 }
 
-#ajax-modal {
-	height: 0 auto;
-	width: 0 auto;
+#img-wrapper {
+	object-fit: none; /* Do not scale the image */
+	object-position: center; /* Center the image within the element */
+	height: 500px;
+	width: 500px;
+	vertical-align: middle;
+	display: inline-block;
+	background-color: black;
+
 }
+
+#img-wrapper img {
+    position:absolute;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+
+#img-info {
+	display: inline-flex;
+}
+
+section#modal-comments {
+height: 500px;
+margin-left: 0 !important;
+margin: 0px;
+overflow: hidden;
+width: 190;
+border-left: 3px gray solid;
+}
+
+#modal-main {
+	height: 500px;
+	width: 500px;
+}
+
+/*Masonry*/
+
+* {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+ 
+      .item {
+        width:  50px;
+        height: 50px;
+        float: left;
+        background: #2296DD;
+        border: 2px solid #333;
+      }
+ 
+      .item.thumbnail {
+        width:  100px;
+        height: 100px;
+        background: #cfcfcf
+      }
+ 
+      .item.medium {
+        width:  150px;
+        height: 50px;
+        background: #A6E392
+      }
+ 
+      .item.large {
+        width:  200px;
+        height: 100px;
+        background: #D092E3
+      }

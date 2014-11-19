@@ -13,7 +13,7 @@ describe 'Likes' do
 	
 	it 'are displayed for a specific post', :js => true do
 		visit '/posts'
-		find('ul li:first-child').click
+		find('Testimage').trigger('click')
 		click_link 'Like'
 		sleep 20
 		expect(page).to have_content '1 like'
@@ -21,9 +21,9 @@ describe 'Likes' do
 
 	it 'can be unliked', :js => true do
 		visit '/posts'
-		find('ul li:first-child').click
+		find('Testimage').trigger('click')
 		click_link 'Like'
-		sleep 10
+		sleep 20
 		click_link 'Unlike'
 		expect(page).to have_content '0 likes'
 	end

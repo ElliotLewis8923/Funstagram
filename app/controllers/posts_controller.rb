@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-	layout nil, :only => [:show]
+	#layout nil, :only => [:show]
 
 	def index
 		@posts = Post.all
@@ -12,6 +12,8 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.create(params[:post].permit(:caption, :image))
+		@post.user_id = current_user.id
+		@post.save!
 		redirect_to posts_path
 	end
 
@@ -19,7 +21,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@liked = @post.likes.find_by(:user_id => current_user.id).nil?
 		@comment = Comment.new
-		sleep 1
+		@user = User.find(@post.user_id)
 		respond_to do |format|
           format.html { redirect_to root_path }
           format.js { render :template => 'posts/show.js.erb' }

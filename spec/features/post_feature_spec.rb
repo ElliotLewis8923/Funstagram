@@ -41,15 +41,13 @@ describe 'Posts' do
 
     		it 'should be displayed with their images on the homepage' do
     			visit '/posts'
-    			expect(page).to have_content 'first post'
-    			expect(page).to have_css("img")
+    			expect(page).to have_css("Testimage")
     		end
 
     		it 'should be display as a larger image when clicked' do
     			visit '/posts'
-    			click_link 'image'
-    			expect(page).to have_css("img")
-    			expect(page).not_to have_content 'Add a post'
+    			find('Testimage').trigger('click')
+    			expect(page).to have_css("#ajax-modal")
     		end
 
 
