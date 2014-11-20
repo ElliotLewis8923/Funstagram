@@ -42,9 +42,9 @@ describe 'Posts' do
     			expect(page).to have_css('.image-link')
     		end
 
-    		it 'should be display as a larger image when clicked' do
-    			find('#masonry div:first-child .image-link').click
-    			expect(page).to have_css("#ajax-modal")
+    		it 'should be display as a larger image when clicked', :js => true do
+    			find('.image-link').click
+    			expect(page).to have_css("#modal-main")
     		end
 
 

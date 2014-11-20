@@ -13,6 +13,7 @@ describe 'Likes' do
 	it 'are displayed for a specific post', :js => true do
 		find('.image-link').click
 		click_link 'Like'
+		sleep 10
 		expect(page).to have_content '1 like'
 	end
 

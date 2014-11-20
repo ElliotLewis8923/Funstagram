@@ -33,10 +33,14 @@ describe 'User' do
 			expect(current_path).to eq '/users/sign_in'
 		end
 
-		it 'can not leave a comment on a post' do
-			post = create(:post)
-			expect(page).not_to have_content 'Leave a comment'
-			expect(current_path).to eq '/users/sign_in'
+		it 'can not leave a comment on a post', :js => true do
+			create(:post)
+			create(:elliot)
+			visit '/posts'
+			find('.image-link').click			
+			fill_in 'Text', :with => 'nice pic'
+			click_button 'Submit'
+			expect(page).not_to have_content 'nice pic'
 		end
 	
 	end
@@ -44,6 +48,7 @@ describe 'User' do
 	context 'when signed in' do
 
 		before(:each) do
+			@user2 = create(:elliot)
 			@user = create(:gilbert)
 			@post = create(:post)
 			login_as @user
@@ -65,24 +70,24 @@ describe 'User' do
 		context 'have permissions:' do
 
 			before(:each) do
-				@post.user_id = @user.id
-				@post.save
 				visit '/posts'
-				find('.image-link').click
+				login_as @user2
 			end
 
 
-			it 'they can delete its own posts', :js => true do
+			it 'can delete its own posts', :js => true do
+				find('.image-link').click
 				click_link 'Delete'
 				expect(current_path).to eq '/posts'
-				expect(page).to have_content "Your post was successfully destroyed"
+				expect(page).not_to have_css '.image-link'
 			end
 
-			it "they can edit its own posts", :js => true do
+			it "can edit its own posts", :js => true do
+				find('.image-link').click
 				click_link 'Edit'
 				fill_in 'Caption', :with => 'changed caption'
 				click_button 'Submit'
-				expect(page).to have_css 'img'
+				find('.image-link').click
 				expect(page).to have_content 'changed caption'
 			end
 		end
@@ -90,28 +95,17 @@ describe 'User' do
 		context 'have restrictions:' do
 
 			before(:each) do
-				@user2 = create(:elliot)
-				@post = create(:post)
-				@post.user_id = @user2.id
-				@post.save
+				login_as @user
 				visit '/posts'
 				find('.image-link').click
 			end
 
-			it "they can not delete other users' posts", :js => true do
+			it "can not delete other users' posts", :js => true do
 				expect(page).not_to have_content 'Delete'
 			end
 
-			it "they can not edit other users' posts", :js => true do
+			it "can not edit other users' posts", :js => true do
 				expect(page).not_to have_content 'Edit'
-				visit "/posts/#{@post.id}/edit"
-				expect(current_path).to eq '/posts'
-			end
-
-			it 'they can only like a post once', :js => true do
-				click_link 'Like'
-				expect(page).to have_content '1 like'
-				expect(page).to have_content 'Unlike'
 			end
 
 

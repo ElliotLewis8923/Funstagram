@@ -19,7 +19,6 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
-		@liked = @post.likes.find_by(:user_id => current_user.id).nil?
 		@comment = Comment.new
 		@user = User.find(@post.user_id)
 		respond_to do |format|
