@@ -40,7 +40,7 @@ describe 'User' do
 			find('.image-link').click			
 			fill_in 'Text', :with => 'nice pic'
 			click_button 'Submit'
-			expect(page).not_to have_content 'nice pic'
+			expect(current_path).to eq '/users/sign_in'
 		end
 	
 	end

@@ -1,5 +1,15 @@
-
-	<%= bootstrap_form_for([@post, @comment], remote: true, class: '.form-control, modalForm') do |f| %>
-	<%= f.text_area :text, :placeholder => "Leave a comment" %>
-	<%= f.submit 'Submit' %>
-	<% end %>
+<% if current_user %>
+	<section id='signedin-modal-form'>
+		<%= bootstrap_form_for([@post, @comment], class: '.form-control, modalForm', remote: true) do |f| %>
+		<%= f.text_area :text, :placeholder => "Leave a comment" %>
+		<%= f.submit 'Submit' %>
+		<% end %>
+	</section>
+<% else %>
+	<section id='signedout-modal-form'>
+		<%= bootstrap_form_for([@post, @comment], class: '.form-control, modalForm') do |f| %>
+		<%= f.text_area :text, :placeholder => "Leave a comment" %>
+		<%= f.submit 'Submit' %>
+		<% end %>
+	</section>
+<% end %>
