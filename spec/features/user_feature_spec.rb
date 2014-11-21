@@ -125,6 +125,12 @@ describe 'User' do
 			visit '/users/1'
 			expect(page).to have_css '.image-link'
 		end
+
+		it 'which does not display posts the user has not uploaded' do
+			visit '/users/2'
+			expect(page).not_to have_css '.image-link'
+		end
+		
 	end
 
 end
