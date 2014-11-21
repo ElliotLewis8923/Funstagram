@@ -16,4 +16,5 @@
 /tmp
 
 /config/secrets.yml
-app/assets/images/
+/app/assets/images/
+/public/system/posts/images/
