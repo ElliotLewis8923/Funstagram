@@ -10,6 +10,7 @@ gem 'database_cleaner'
 gem 'devise'
 gem "factory_girl_rails", "~> 4.0"
 gem "paperclip", "~> 4.2"
+gem 'rmagick', '2.13.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
