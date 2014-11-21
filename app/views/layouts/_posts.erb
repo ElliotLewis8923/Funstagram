@@ -1,0 +1,12 @@
+<% if @posts.count == 0 %>
+	No posts
+<% end %>
+<div id="masonry">
+		<% @posts.each do |post| %>
+		<div class='item'>
+			<div class='thumb-wrapper'>
+				<%= link_to image_tag(post.image.url(:medium)), post_path(post), class: 'image-link', remote: true, data: { toggle: "modal", target: "#ajax-modal" } %>
+			</div>
+		</div>
+		<% end %>
+</div>

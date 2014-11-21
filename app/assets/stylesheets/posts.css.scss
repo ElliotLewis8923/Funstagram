@@ -1,3 +1,131 @@
-// Place all the styles related to the posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#main-container {
+  width: 70%;
+  background-color: rgb(247, 247, 247);
+}
+
+#main-content {
+  width: 100%;
+  padding:0;
+}
+
+.header a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+#comments-list li {
+	word-wrap: break-word;
+}
+
+#comments-list {
+	overflow-x: auto;
+	overflow-y: scroll;
+	height: 334px;
+	width: 200px;
+}
+
+#like-links, #link-name {
+	display: inline;
+}
+
+#caption {
+	display: block;
+}
+
+#img-wrapper {
+	object-fit: none;
+	object-position: center; 
+	height: 500px;
+	width: 500px;
+	vertical-align: middle;
+	display: inline-block;
+	background-color: black;
+  overflow: hidden;
+
+}
+
+#img-wrapper img {
+  position:absolute;
+  top:0;
+  bottom:0;
+  margin:auto;
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+#img-info {
+	display: inline-flex;
+}
+
+section#modal-comments {
+height: 500px;
+margin-left: 0 !important;
+margin: 0px;
+overflow: hidden;
+width: 190;
+border-left: 3px gray solid;
+}
+
+#modal-main {
+	height: 500px;
+	width: 500px;
+}
+
+#masonry {
+  width: 100%;
+  height: 100%;
+}
+
+/*Masonry*/
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ 
+.item {
+  width:  150px;
+  height: 150px;
+  float: left;
+  background: #2296DD;
+  padding: 5px;
+  margin: 20px;
+  box-shadow: 2px 2px 5px #888888;
+  overflow: hidden;
+  background: #cfcfcf;
+  border-radius: 3px;
+}
+
+.thumb-wrapper {
+  width: 100%; 
+  text-align: center; 
+  overflow: hidden; 
+  height: 100%;
+  border-radius: 3px;
+  background-color: black;
+}
+
+.item img {
+  position: relative;
+  left: 100%; 
+  margin-left: -200%; 
+  height: 150px;
+}
+
+.item.medium {
+  width:  150px;
+  height: 50px;
+  background: #A6E392
+}
+
+.item.large {
+  width:  200px;
+  height: 100px;
+  background: #D092E3
+}
