@@ -113,4 +113,18 @@ describe 'User' do
 
 	end
 
+	context 'has a profile' do
+
+		before(:each) do
+			create(:elliot)
+			create(:gilbert)
+			create(:post)
+		end
+
+		it 'which displays posts the user has uploaded' do
+			visit '/users/1'
+			expect(page).to have_css '.image-link'
+		end
+	end
+
 end
