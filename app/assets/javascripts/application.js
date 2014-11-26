@@ -15,5 +15,14 @@
 //= require bootstrap-sprockets
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
-//= require masonry/jquery.masonry
+//= require masonry.pkgd.js
 //= require_tree .
+
+var container = document.querySelector('#container');
+var msnry = new Masonry( container, {
+  // options
+  columnWidth: 150,
+  itemSelector: '.item',
+  "isFitWidth": true,
+  gutter: 10
+});

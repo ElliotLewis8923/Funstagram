@@ -6,28 +6,33 @@
   	<title>Shytstagram</title>
 </head>
 <body>
+	<header class='header'>
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+		<h1 id='header-title'><a href='/posts'>Shytstagram</a></h1>
+		<div id='sessions-links'>
+			<% if user_signed_in? %>
+
+				<%= link_to 'Sign out', destroy_user_session_path, method: :delete %> 
+			<% else %>
+				<%= link_to 'Sign in', new_user_session_path %> 
+				<%= link_to 'Sign up', new_user_registration_path %> 
+			<% end %>
+		</div>	
+		<% if user_signed_in? %>
+			<div id='add-post'>
+				<%= link_to 'Add a post', new_post_path, class: 'create-post' %>
+			</div>
+			<div id='signedin-as'>
+				<p>Signed in as <%= link_to "#{current_user.username}", user_path(current_user) %></p>
+			</div>
+		<% end %>
+	</header>
 	<div id='main-container' class='container-fluid'>
-		<div class='page-header'>
-			<header class='header'>
-				<p class="notice"><%= notice %></p>
-				<p class="alert"><%= alert %></p>
-				<h1><a href='/posts'>Shytstagram</a></h1>
-				<% if user_signed_in? %>
-					Welcome, <%= current_user.username %>
-					<%= link_to 'Sign out', destroy_user_session_path, method: :delete %> 
-				<% else %>
-					<%= link_to 'Sign in', new_user_session_path %> 
-					<%= link_to 'Sign up', new_user_registration_path %> 
-				<% end %>
-				<% if user_signed_in? %>
-	<%= link_to 'Add a post', new_post_path, class: 'create-post' %>
-<% end %>
-			</header>
-		</div>
 		<div id="main-content" class='container'>
 			<%= render 'layouts/posts' %>
-			<%= yield %>
 		</div>
+		<%= yield %>
 	</div>
 	<%= render 'layouts/modal' %>
 </body>

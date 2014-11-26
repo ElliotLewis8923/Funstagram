@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'masonry-rails'
 gem 'bootstrap_form'
 gem 'json'
 gem 'jquery-turbolinks'
