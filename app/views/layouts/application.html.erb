@@ -1,6 +1,6 @@
 <html>
 <head>
-	<%= stylesheet_link_tag    'application', media: 'all' %>
+	<%= stylesheet_link_tag 'application', media: 'all' %>
 	<%= csrf_meta_tags %>
 	<%= javascript_include_tag 'application' %>
   	<title>Shytstagram</title>
@@ -12,7 +12,6 @@
 		<h1 id='header-title'><a href='/posts'>Shytstagram</a></h1>
 		<div id='sessions-links'>
 			<% if user_signed_in? %>
-
 				<%= link_to 'Sign out', destroy_user_session_path, method: :delete %> 
 			<% else %>
 				<%= link_to 'Sign in', new_user_session_path %> 

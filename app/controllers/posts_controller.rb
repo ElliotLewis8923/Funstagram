@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
 
-	#layout nil, :only => [:show]
-
 	def index
 		@posts = Post.all
 	end
@@ -22,9 +20,9 @@ class PostsController < ApplicationController
 		@comment = Comment.new
 		@user = User.find(@post.user_id)
 		respond_to do |format|
-          format.html { redirect_to root_path }
-          format.js { render :template => 'posts/show.js.erb' }
-      end
+        	format.html { redirect_to root_path }
+        	format.js { render :template => 'posts/show.js.erb' }
+      	end
 	end
 
 	def destroy

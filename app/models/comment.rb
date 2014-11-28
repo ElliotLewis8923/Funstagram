@@ -10,4 +10,5 @@ class Comment < ActiveRecord::Base
   def username
   	user.username
   end
+
 end

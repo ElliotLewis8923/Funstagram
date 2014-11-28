@@ -2,10 +2,8 @@
 	<% if @posts %>
 		<% @posts.each do |post| %>
 			<div class='item'>
-					<%= link_to image_tag(post.image.url(:medium)), post_path(post), class: 'image-link', remote: true, data: { toggle: "modal", target: "#ajax-modal" } %>
+				<%= link_to image_tag(post.image.url(:medium)), post_path(post), class: 'image-link', remote: true, data: { toggle: "modal", target: "#ajax-modal" } %>
 			</div>
 		<% end %>
 	<% end %>
 </div>
-				<div class='thumb-wrapper'>
-				</div>
