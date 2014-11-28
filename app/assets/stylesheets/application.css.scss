@@ -42,9 +42,11 @@
   text-align: center;
 }
 
-p.alert {
+p.alert, p.notice {
   padding: 0;
   margin: 0;
+  position: absolute;
+  left: 10px;
 }
 
 .modal-form {
@@ -76,56 +78,75 @@ p.alert {
 
 
 #signedin-as {
+  letter-spacing: 2;
   position: absolute;
   right: 10px;
   top: 0px;
 }
 
 #sessions-links {
+  position: relative;
+  margin-left: 17px;
+  margin-right: 5px;
+  top: 0px;
+}
+
+#sessions-links > * {
+  font-weight: 100;
+}
+
+.header {
   position: absolute;
-  left: 5px;
-  top: 5px;
-}
-
-#sessions-links a {
-  border: 1px #428bca solid;
-  border-radius: 4px;
-  padding: 4px;
-  margin: 4px;
-  font-weight: 200;
-}
-
-header {
- height: 100%;
- width: auto;
+  width: 100%;
+  padding: 0px;
+  top: 10px;
+  margin: 0px;
+  text-align: center;
+  height: 0px;
 }
 
 #header-title, p.notice, p.alert, #username, #signedin-as {
- text-decoration: none;
- font-weight: 100;
+  text-decoration: none;
+  font-weight: 100;
+  display:inline;
+}
+
+#add-post {
+  font-weight: 100;
+  display: inline-block;
+  position: relative;
+  left:5px;
+  top: 0px;
 }
 
 #header-title {
- font-size: 50;
- position: relative;
- float: middle;
- letter-spacing: 5;
+  font-size: 50;
+  position: relative;
+  float: middle;
+  letter-spacing: 5;
 }
 
 #username {
- font-size: 20;
- float: middle;
- letter-spacing: 3;
+  font-size: 20;
+  float: middle;
+  letter-spacing: 3;
+}
+
+#user-title {
+  letter-spacing: 5;
+  font-weight: 100;
+  color: #7BAEDA;
+
 }
 
 #main-container {
- width: 70%;
- background-color: rgb(247, 247, 247);
- padding: 10;
- position: relative;
- top: 10%;
- height: 100% auto;
- display: block; 
+  width: 70%;
+  background-color: rgb(247, 247, 247);
+  padding: 10;
+  position: relative;
+  top: 130px;
+  height: 100% auto;
+  display: block; 
 }
 
 #main-content {
