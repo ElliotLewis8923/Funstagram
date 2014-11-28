@@ -10,7 +10,6 @@ describe 'Posts' do
     	end
         
         it 'should display a prompt to add a post' do
-          expect(page).to have_content 'No posts'
           expect(page).to have_link 'Add a post'
         end
 
@@ -25,8 +24,7 @@ describe 'Posts' do
         	fill_in 'Caption', :with => 'first post'
         	attach_file('Image', './app/assets/images/testimage.png')
         	click_button 'Submit'
-        	expect(page).to have_link 'Add a post'
-        	expect(page).not_to have_content 'No posts'
+        	expect(page).to have_css '.image-link'
         end
     end
 

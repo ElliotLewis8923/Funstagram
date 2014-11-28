@@ -1,7 +1,7 @@
 <section class='bootstrap-form'>
 	<%= bootstrap_form_for @post, :html => { :multipart => true } do |f| %>
 		<%= f.text_area :caption %>
-		<%= f.file_field :image %>
+		<span><%= f.file_field :image, class: "btn btn-file" %></span>
 		<%= f.submit 'Submit' %>
 	<% end %>
 </section>

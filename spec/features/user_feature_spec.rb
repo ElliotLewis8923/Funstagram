@@ -57,7 +57,7 @@ describe 'User' do
 
 		it 'should display its username' do
 			visit '/posts'
-			expect(page).to have_content 'Welcome, hacker1337'
+			expect(page).to have_content 'Signed in as hacker1337'
 		end
 
 		it 'should display a link to sign out' do
