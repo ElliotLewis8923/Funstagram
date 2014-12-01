@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
+# include ActiveModel::Validations
+
+describe User do
 
 	context 'Associations' do
 
@@ -13,6 +15,8 @@ RSpec.describe User, :type => :model do
 	context 'Validations' do
 
 		it { should validate_presence_of(:username) }
+
+		it { should ensure_length_of(:username)     }
 
 	end
 

@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, :uniqueness => {
-    :case_sensitive => false }, presence: true
+    :case_sensitive => false }, presence: true, length: { minimum: 3, maximum: 18,
+    too_long: "Your username must contain between 3 and 18 characters" }
 
 
   attr_accessor :login
