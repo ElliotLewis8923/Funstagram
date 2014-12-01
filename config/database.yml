@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: shytstagram_production
-  username: shytstagram
   password: <%= ENV['SHYTSTAGRAM_DATABASE_PASSWORD'] %>
