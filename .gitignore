@@ -15,6 +15,5 @@
 /log/*.log
 /tmp
 
-/config/secrets.yml
 /app/assets/images/
 /public/system/posts/images/
