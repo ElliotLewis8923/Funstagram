@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 	validates_attachment_presence :image
 
 	def s3_credentials
-		{:bucket => Rails.application.bucket, :access_key_id => Rails.application.access_key_id, :secret_access_key => Rails.application.secret_access_key}
+		{:bucket => 'photo-bucket-elewis', :access_key_id => Rails.application.secrets.access_key_id, :secret_access_key => Rails.application.secrets.secret_access_key}
 	end
 
 end
