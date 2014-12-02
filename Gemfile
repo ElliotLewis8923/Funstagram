@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'aws-sdk'
 gem 'bootstrap_form'
 gem 'json'
 gem 'jquery-turbolinks'
