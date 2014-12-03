@@ -7,6 +7,7 @@ Technologies used:
 - Ruby on Rails
 - Postgres
 - Factorygirl
+- Amazon AWS S3
 - Paperclip
 - RMagick
 - Rspec
