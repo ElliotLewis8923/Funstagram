@@ -1,18 +1,17 @@
 class LikesController < ApplicationController
 
+	include LikesHelper
 	include ActionView::Helpers::TextHelper
 
 	def create
 		@post = Post.find(params[:post_id])
-		if @post.likes.find_by(:user_id => current_user.id).nil?
+		@like = @post.likes.find_by(:user_id => current_user.id)
+		if @like.nil?
 			@post.likes.create(:user_id => current_user.id).save!
-			render json: { updatedlikesCount: pluralize(@post.likes.count, 'like'), 
-					    postId: params[:post_id], link: 'Unlike' }
+			render_likes('Unlike')
 		else
-			@post.likes.find_by(:user_id => current_user.id).destroy
-			render json: { updatedlikesCount: pluralize(@post.likes.count, 'like'), 
-					    postId: params[:post_id], link: 'Like' }
+			@like.destroy
+			render_likes('Like')
 		end
 	end
-
 end
