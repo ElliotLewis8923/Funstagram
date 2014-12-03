@@ -1,7 +1,10 @@
+[![Code Climate](https://codeclimate.com/github/ElliotLewis8923/Shytstagram/badges/gpa.svg)](https://codeclimate.com/github/ElliotLewis8923/Shytstagram)
+
 Shytstagram
 =========
 
-A photo-sharing website based on Instagram.  The application is currently hosted at http://shytstagram.herokuapp.com/.
+A photo-sharing website based on Instagram.  The application is currently hosted at:
+http://shytstagram.herokuapp.com/
 
 Technologies used:
 - Ruby on Rails
@@ -20,7 +23,7 @@ Technologies used:
 - Bootstrap
 
 
-How to run tests
+How to use
 ----------------
 Clone the repository:
 ```shell
@@ -41,3 +44,9 @@ Run all tests:
 ```shell
 $ rspec
 ```
+
+Start server:
+```shell
+$ rails s
+```
+
