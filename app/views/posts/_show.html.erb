@@ -44,11 +44,7 @@
 	<section class='modal-form'>
 		<%= render 'comments/new' %>
 		<div id="link-name">
-				<% if @post.likes.find_by(:user_id => current_user.id).nil? %>
-					<%= link_to 'Like', post_likes_path(@post), id: 'like-link', method: :post, :remote => true, class: 'btn btn-default' %>
-				<% else %>
-					<%= link_to 'Unlike', post_likes_path(@post), id: 'like-link', method: :post, :remote => true, class: 'btn btn-default' %>
-				<% end %>
+		<%= render 'likes/new' %>
 		</div>
 	</section>
 </section>
