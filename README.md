@@ -1,6 +1,6 @@
-[![Code Climate](https://codeclimate.com/github/ElliotLewis8923/Shytstagram/badges/gpa.svg)](https://codeclimate.com/github/ElliotLewis8923/Shytstagram)
+[![Code Climate](https://codeclimate.com/github/ElliotLewis8923/Funstagram/badges/gpa.svg)](https://codeclimate.com/github/ElliotLewis8923/Funstagram)
 
-Shytstagram
+Funstagram
 =========
 
 A photo-sharing website based on Instagram.  The application is currently hosted at:
