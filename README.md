@@ -4,7 +4,7 @@ Funstagram
 =========
 
 A photo-sharing website based on Instagram.  The application is currently hosted at:
-http://shytstagram.herokuapp.com/
+http://funstagram.herokuapp.com/
 
 Technologies used:
 - Ruby on Rails
@@ -27,12 +27,12 @@ How to use
 ----------------
 Clone the repository:
 ```shell
-$ git clone git@github.com:ElliotLewis8923/shytstagram.git
+$ git clone git@github.com:ElliotLewis8923/funstagram.git
 ```
 
 Change into the directory:
 ```shell
-$ cd shytstagram
+$ cd funstagram
 ```
 
 Install dependencies:
