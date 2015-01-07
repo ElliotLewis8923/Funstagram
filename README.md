@@ -5,8 +5,6 @@ Funstagram
 
 A photo-sharing website based on Instagram.  The application is currently hosted at:
 http://funstagram-fun.herokuapp.com/
-=======
-http://funstagram.herokuapp.com/
 
 Technologies used:
 - Ruby on Rails
