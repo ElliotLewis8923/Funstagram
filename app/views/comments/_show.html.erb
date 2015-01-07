@@ -1,0 +1,15 @@
+<ul class="list-group">
+   	<% @post.comments.each do |comment| %>
+		<li class="list-group-item">
+			<p class="list-group-item-text">
+		        <%= link_to comment.username, user_path(comment.user) %>
+		    </p>
+		    <p class="list-group-item-heading">
+		        <%= comment.text %>
+		    </p>
+		    <i class='timestamp'>
+		      	<%= time_ago_in_words(comment.created_at) %> ago
+		    </i>
+		</li>
+	<% end %>
+</ul>

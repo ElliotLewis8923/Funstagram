@@ -1,0 +1,36 @@
+<section id='modal-main'>
+	<div id='img-wrapper'>
+		<%= image_tag @post.image.url(:medium) %>
+	</div>
+	<section id='user-options'>
+		<% if current_user %>
+			<% if current_user.id == @post.user_id %>
+				<%= link_to 'Delete', post_path(@post), method: :delete, :confirm => "Are you sure you would like to delete this post?" %>
+				<%= link_to 'Edit', edit_post_path(@post) %>
+			<% end %>
+		<% end %>
+	</section>
+</section>
+<section id='modal-comments'>
+	<section id='img-info'>
+		<div id='username'>
+			<%= link_to "#{@user.username}", user_path(@user) %>
+		</div>
+		<div id='caption'>
+			<%= @post.caption %>
+		</div>
+		<i class='timestamp'><%= time_ago_in_words(@post.created_at) %> ago</i>
+		<section id='like-links'>
+			<span><%= pluralize(@post.likes.count, 'like') %></span>
+		</section>
+	</section>
+	<section id='comments-list'>
+		<%= render 'comments/show' %>
+	</section>
+	<section class='modal-form'>
+		<%= render 'comments/new' %>
+		<div id="link-name">
+			<%= render 'likes/new' %>
+		</div>
+	</section>
+</section>

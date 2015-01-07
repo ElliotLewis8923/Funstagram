@@ -1,0 +1,39 @@
+<html>
+<head>
+	<%= stylesheet_link_tag 'application', media: 'all' %>
+	<%= csrf_meta_tags %>
+	<%= javascript_include_tag 'application' %>
+  	<title>funstagram</title>
+</head>
+<body>
+	<header class='header'>
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+		<h1 id='header-title'><a href='/posts'>Funstagram</a></h1>
+		<h2 id='user-title'><%= @user_title %></h2>
+	</header>
+	<div id='main-container' class='container-fluid'>
+		<div id='sessions-links'>
+			<% if user_signed_in? %>
+				<%= link_to 'Sign out', destroy_user_session_path, method: :delete %> 
+				<div id='add-post'>
+					<%= link_to 'Add a post', new_post_path, class: 'create-post' %>
+				</div>
+				<div id='signedin-as'>
+					<p>Signed in as <%= link_to "#{current_user.username}", user_path(current_user) %></p>
+				</div>
+			<% else %>
+				<% if @posts %>
+					<%= link_to 'Sign in', new_user_session_path %> 
+					<%= link_to 'Sign up', new_user_registration_path %> 
+				<% end %>
+			<% end %>
+		</div>	
+		<div id="main-content" class='container'>
+			<%= render 'layouts/posts' %>
+		</div>
+		<%= yield %>
+	</div>
+	<%= render 'layouts/modal' %>
+</body>
+</html>

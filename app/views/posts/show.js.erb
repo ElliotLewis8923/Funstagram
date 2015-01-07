@@ -1,0 +1,18 @@
+var title       =   '.modal-title',
+    loader      =   '.ajax-loader',
+    content     =   '.modal-body-content',
+    dataRemote  =   'a[data-remote=true]',
+    toolbar     =   'div.modal-footer',
+    modal       =   '#ajax-modal';
+
+$(title).html('');
+$(modal).css('visibility', 'visible');
+$(loader).fadeToggle('fast', function() {
+  $(loader).fadeOut('slow');
+  $(content).html('<%= j render("show") %>');
+  $(modal).modal();
+});
+
+$(modal).on('hidden.bs.modal', function() {
+  $(this).css('visibility', 'hidden');
+});

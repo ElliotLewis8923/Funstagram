@@ -1,0 +1,13 @@
+<% if current_user %>
+	<section id='signedin-modal'>
+		<%= bootstrap_form_for([@post, @comment], remote: true) do |f| %>
+		<%= f.text_area :text, :placeholder => "Leave a comment", hide_label: true %>
+		<%= f.submit 'Submit comment' %>
+		<% end %>
+	</section>
+<% else %>
+		<%= bootstrap_form_for([@post, @comment]) do |f| %>
+		<%= f.text_area :text, :placeholder => "Leave a comment", hide_label: true %>
+		<%= f.submit 'Submit comment' %>
+		<% end %>
+<% end %>
